@@ -1,24 +1,21 @@
 #!/bin/env python3
-from queue import Queue
+from linked import LinkedQueue as Queue
 
-A = Queue()
-B = Queue()
-C = Queue()
-D = Queue()
 
 def print_queue(x, name):
-    y = x
     print('-------------')
     print(f'Queue {name}', end='')
-    if y.qsize() == 0:
-        print('\tIs empty')
+    if x.is_empty():
+        print('\t is empty')
     else:
         print('')
-    for value in range(y.qsize()):
-        print(y.get(), end=', ')
-    print('')
+        x.print_linked()
 
 def main():
+    A = Queue()
+    B = Queue()
+    C = Queue()
+    D = Queue()
     customer_number = 0
     for current_time in range(1800):
         if current_time % 300 == 0:
@@ -33,16 +30,16 @@ def main():
                 B.put(customer_number)
             customer_number += 1
         if current_time % 10 == 0:
-            if C.qsize():
+            if C._size:
                 D.put(C.get())
         if current_time % 20 == 0:
-            if A.qsize():
+            if A._size:
                 C.put(A.get())
         if current_time % 20 == 0:
-            if B.qsize():
+            if B._size:
                 C.put(B.get())
         if current_time % 10 == 0:
-            if D.qsize():
+            if D._size:
                 print('-------------')
                 print(f'Order {D.get()} done!', end='\n\n')
     				
