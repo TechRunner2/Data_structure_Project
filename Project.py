@@ -1,16 +1,16 @@
 #!/bin/env python3
 from linked import LinkedQueue as Queue
 
-
-def print_queue(x, name):
+def print_queue(*args):
     '''Printing out queues contents'''
-    print('-------------')
-    print(f'Queue {name}', end='')
-    if x.is_empty():
-        print('\t is empty')
-    else:
-        print('')
-        x.print_linked()
+    for queue in args:
+        print('-------------')
+        print(f'Queue {queue[1]}', end='')
+        if queue[0].is_empty():
+            print('\t is empty')
+        else:
+            print('')
+            queue[0].print_linked()
 
 def main():
     A = Queue()
@@ -20,10 +20,7 @@ def main():
     customer_number = 0
     for current_time in range(1800):
         if current_time % 300 == 0:
-            print_queue(A, 'A')
-            print_queue(B, 'B')
-            print_queue(C, 'C')
-            print_queue(D, 'D')
+            print_queue((A, 'A'), (B, 'B'), (C, 'C'), (D, 'D'))
         if current_time % 10 == 0:
             '''Customers arriving'''
             if customer_number % 2 == 0:
